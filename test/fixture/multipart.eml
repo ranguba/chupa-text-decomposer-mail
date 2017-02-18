@@ -1,0 +1,23 @@
+Mime-Version: 1.0
+Subject: Hello
+From: Sender <from@example.com>
+To: Recipient <to@example.com>
+Date: Sun, 19 Feb 2017 00:27:55 +0900 (JST)
+Content-Type: multipart/alternative;
+ boundary="++++";
+ charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+--++++
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+World
+--++++
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<p>World</p>
+--++++

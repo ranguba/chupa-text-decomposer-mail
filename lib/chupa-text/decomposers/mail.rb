@@ -34,21 +34,40 @@ module ChupaText
 
       def decompose(data)
         mail = ::Mail.new(data.body)
-        mail.body.parts.each_with_index do |part, i|
+        decompose_attributes(mail, data)
+
+        if mail.multipart?
+          parts = mail.body.parts
+        else
+          parts = [mail]
+        end
+        parts.each_with_index do |part, i|
           body = part.body.decoded
           body.force_encoding(part.charset)
 
-          part_data = TextData.new(body)
+          part_data = TextData.new(body, :source_data => data)
           part_data.uri = "#{data.uri}\##{i}"
           part_data.mime_type = part.mime_type
-          data.attributes.each do |name, value|
-            part_data[name] = value
-          end
           part_data[:encoding] = body.encoding.to_s
-          part_data[:subject] = mail.subject
-          part_data[:author] = mail[:from].formatted | mail[:from].addresses
           yield(part_data)
         end
+      end
+
+      private
+      def decompose_attributes(mail, data)
+        data[:subject] = mail.subject
+
+        from = mail[:from]
+        if from
+          data[:from] = from.formatted | from.addresses
+        end
+
+        to = mail[:to]
+        if to
+          data[:to] = to.formatted | to.addresses
+        end
+
+        data[:date] = mail.date
       end
     end
   end

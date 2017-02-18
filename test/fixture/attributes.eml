@@ -1,0 +1,7 @@
+Mime-Version: 1.0
+Subject: Hello
+From: Sender <from@example.com>
+To: Recipient1 <to1@example.com>, Recipient2 <to2@example.com>
+Date: Sun, 19 Feb 2017 00:27:55 +0900 (JST)
+
+World
