@@ -55,19 +55,19 @@ module ChupaText
 
       private
       def decompose_attributes(mail, data)
-        data[:subject] = mail.subject
+        data["message-id"] = mail.message_id
+        data["subject"] = mail.subject
+        data["date"] = mail.date
 
         from = mail[:from]
         if from
-          data[:from] = from.formatted | from.addresses
+          data["from"] = from.formatted | from.addresses
         end
 
         to = mail[:to]
         if to
-          data[:to] = to.formatted | to.addresses
+          data["to"] = to.formatted | to.addresses
         end
-
-        data[:date] = mail.date
       end
     end
   end

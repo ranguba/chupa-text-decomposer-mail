@@ -117,6 +117,11 @@ class TestMail < Test::Unit::TestCase
                      decompose("date"))
       end
 
+      def test_message_id
+        assert_equal(["20170219.002755.448326596437930905@example.com"],
+                     decompose("message-id"))
+      end
+
       private
       def decompose(attribute_name)
         super(fixture_path("attributes.eml")).collect do |data|
