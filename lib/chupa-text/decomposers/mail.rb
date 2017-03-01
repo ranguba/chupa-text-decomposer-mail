@@ -43,7 +43,7 @@ module ChupaText
         end
         parts.each_with_index do |part, i|
           body = part.body.decoded
-          body.force_encoding(part.charset)
+          body.force_encoding(part.charset) if part.charset
 
           part_data = TextData.new(body, :source_data => data)
           part_data.uri = "#{data.uri}\##{i}"
