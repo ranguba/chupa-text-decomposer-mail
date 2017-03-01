@@ -46,7 +46,13 @@ module ChupaText
           body.force_encoding(part.charset) if part.charset
 
           part_data = TextData.new(body, :source_data => data)
-          part_data.uri = "#{data.uri}\##{i}"
+          uri = data.uri.dup
+          if uri.fragment
+            uri.fragment += "-#{i}"
+          else
+            uri.fragment = i.to_s
+          end
+          part_data.uri = uri
           part_data.mime_type = part.mime_type if part.mime_type
           part_data[:encoding] = body.encoding.to_s
           yield(part_data)

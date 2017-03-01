@@ -84,10 +84,20 @@ class TestMail < Test::Unit::TestCase
       data.mime_type = "message/rfc822"
 
       decomposed = []
-      decomposer.decompose(data) do |decomposed_data|
+      decompose_data(data) do |decomposed_data|
         decomposed << decomposed_data
       end
       decomposed
+    end
+
+    def decompose_data(data, &block)
+      decomposer.decompose(data) do |decomposed_data|
+        if decomposer.target?(decomposed_data)
+          decompose_data(decomposed_data, &block)
+        else
+          yield(decomposed_data)
+        end
+      end
     end
 
     sub_test_case("attributes") do
@@ -161,6 +171,23 @@ class TestMail < Test::Unit::TestCase
       private
       def decompose
         super(fixture_path("no-mime.eml"))
+      end
+    end
+
+    sub_test_case("nested message/rfc822") do
+      def test_body
+        assert_equal([
+                       [
+                         fixture_path("nested-rfc822.eml") + "#0-0-0",
+                         "Sub World",
+                       ],
+                     ],
+                     decompose.collect {|data| [data.uri.to_s, data.body]})
+      end
+
+      private
+      def decompose
+        super(fixture_path("nested-rfc822.eml"))
       end
     end
   end
