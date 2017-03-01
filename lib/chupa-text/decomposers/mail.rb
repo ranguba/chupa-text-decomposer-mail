@@ -43,7 +43,13 @@ module ChupaText
         end
         parts.each_with_index do |part, i|
           body = part.body.decoded
-          body.force_encoding(part.charset) if part.charset
+          if part.charset
+            begin
+              body.force_encoding(part.charset)
+            rescue ArgumentError
+              raise UnknownEncodingError.new(data, part.charset)
+            end
+          end
 
           part_data = TextData.new(body, :source_data => data)
           uri = data.uri.dup

@@ -190,5 +190,18 @@ class TestMail < Test::Unit::TestCase
         super(fixture_path("nested-rfc822.eml"))
       end
     end
+
+    sub_test_case("unknown encoding") do
+      def test_body
+        assert_raise(ChupaText::UnknownEncodingError) do
+          decompose
+        end
+      end
+
+      private
+      def decompose
+        super(fixture_path("unknown-encoding.eml"))
+      end
+    end
   end
 end
