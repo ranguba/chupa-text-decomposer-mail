@@ -47,7 +47,7 @@ module ChupaText
 
           part_data = TextData.new(body, :source_data => data)
           part_data.uri = "#{data.uri}\##{i}"
-          part_data.mime_type = part.mime_type
+          part_data.mime_type = part.mime_type if part.mime_type
           part_data[:encoding] = body.encoding.to_s
           yield(part_data)
         end

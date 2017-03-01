@@ -152,5 +152,16 @@ class TestMail < Test::Unit::TestCase
         super(fixture_path("multipart.eml"))
       end
     end
+
+    sub_test_case("no MIME") do
+      def test_body
+        assert_equal(["World\n"], decompose.collect(&:body))
+      end
+
+      private
+      def decompose
+        super(fixture_path("no-mime.eml"))
+      end
+    end
   end
 end
