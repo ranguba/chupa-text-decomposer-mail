@@ -1,5 +1,5 @@
 # News
 
-## 1.0.0: 2017-XX-XX
+## 1.0.0: 2020-05-01
 
 The first release!!!
