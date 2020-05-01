@@ -176,9 +176,11 @@ class TestMail < Test::Unit::TestCase
 
     sub_test_case("nested message/rfc822") do
       def test_body
+        uri = fixture_path("nested-rfc822.eml") + "#0-0-0"
+        uri = uri.downcase if Gem.win_platform?
         assert_equal([
                        [
-                         fixture_path("nested-rfc822.eml") + "#0-0-0",
+                         uri,
                          "Sub World",
                        ],
                      ],
