@@ -1,4 +1,4 @@
-# Copyright (C) 2017  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2017-2020  Sutou Kouhei <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -142,7 +142,7 @@ class TestMail < Test::Unit::TestCase
 
     sub_test_case("one page") do
       def test_body
-        assert_equal(["World\n"], decompose.collect(&:body))
+        assert_equal(["World\r\n"], decompose.collect(&:body))
       end
 
       private

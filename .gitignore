@@ -1,4 +1,5 @@
-/doc/reference/
 /.yardoc/
-/pkg/
 /Gemfile.lock
+/doc/reference/
+/pkg/
+/vendor/

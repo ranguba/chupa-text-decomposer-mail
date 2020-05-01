@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-# Copyright (C) 2017  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2017-2020  Sutou Kouhei <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,8 @@ $VERBOSE = true
 
 ENV["TZ"] = "JST"
 
+test_dir = __dir__
+
 require "bundler/setup"
 
 require "test-unit"
@@ -30,4 +32,4 @@ ChupaText::Decomposers.load
 
 require_relative "helper"
 
-exit(Test::Unit::AutoRunner.run(true))
+exit(Test::Unit::AutoRunner.run(true, test_dir))

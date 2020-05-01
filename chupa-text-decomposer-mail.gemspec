@@ -1,6 +1,6 @@
 # -*- ruby -*-
 #
-# Copyright (C) 2017  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2017-2020  Sutou Kouhei <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.name = "chupa-text-decomposer-mail"
   spec.version = "1.0.0"
   spec.homepage = "https://github.com/ranguba/chupa-text-decomposer-mail"
-  spec.authors = ["Kouhei Sutou"]
+  spec.authors = ["Sutou Kouhei"]
   spec.email = ["kou@clear-code.com"]
   readme = File.read("README.md", :encoding => "UTF-8")
   entries = readme.split(/^\#\#\s(.*)$/)
@@ -45,6 +45,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("bundler")
   spec.add_development_dependency("rake")
   spec.add_development_dependency("test-unit")
-  spec.add_development_dependency("packnga")
-  spec.add_development_dependency("kramdown")
 end

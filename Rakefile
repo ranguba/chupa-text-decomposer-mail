@@ -1,6 +1,6 @@
 # -*- ruby -*-
 #
-# Copyright (C) 2017  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2017-2020  Sutou Kouhei <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -22,9 +22,8 @@ require "pathname"
 
 require "rubygems"
 require "bundler/gem_helper"
-require "packnga"
 
-base_dir = Pathname(__FILE__).dirname
+base_dir = Pathname(__dir__)
 
 helper = Bundler::GemHelper.new(base_dir.to_s)
 def helper.version_tag
@@ -33,12 +32,6 @@ end
 
 helper.install
 spec = helper.gemspec
-
-Packnga::DocumentTask.new(spec) do
-end
-
-Packnga::ReleaseTask.new(spec) do
-end
 
 desc "Run tests"
 task :test do
