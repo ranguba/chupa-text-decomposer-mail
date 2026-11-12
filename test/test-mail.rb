@@ -142,7 +142,7 @@ class TestMail < Test::Unit::TestCase
 
     sub_test_case("one page") do
       def test_body
-        assert_equal(["World\r\n"], decompose.collect(&:body))
+        assert_equal(["World\n"], decompose.collect(&:body))
       end
 
       private
